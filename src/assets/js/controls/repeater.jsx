@@ -5,6 +5,8 @@ const { Component } = wp.element;
 const {
     BaseControl,
     Button,
+    Tooltip,
+    ToggleControl,
 } = wp.components;
 
 const {
@@ -12,7 +14,7 @@ const {
 } = wp.compose;
 
 const DragHandle = SortableHandle( () => (
-    <div
+    <Button
         className="lzb-gutenberg-repeater-btn-drag"
         onClick={ ( e ) => {
             e.stopPropagation();
@@ -20,7 +22,7 @@ const DragHandle = SortableHandle( () => (
         role="button"
     >
         <span className="dashicons dashicons-menu"></span>
-    </div>
+    </Button>
 ) );
 
 const SortableItem = SortableElement( ( data ) =>
@@ -67,7 +69,7 @@ class RepeaterControl extends Component {
 
         const items = [];
         for ( let i = 0; i < count; i++ ) {
-            const active = this.state.activeItem === i;
+            const active = this.state.activeItem === -2 || this.state.activeItem === i;
 
             items.push( {
                 title: `Row ${ i + 1 }`,
@@ -96,7 +98,7 @@ class RepeaterControl extends Component {
         return (
             <BaseControl label={ label }>
                 <div className="lzb-gutenberg-repeater">
-                    { items.length && items.length > 0 ? (
+                    { items.length ? (
                         <SortableList
                             items={ items }
                             onSortEnd={ ( { oldIndex, newIndex } ) => {
@@ -110,14 +112,29 @@ class RepeaterControl extends Component {
                             helperClass={ 'lzb-gutenberg-repeater-sortable' }
                         />
                     ) : '' }
-                    <Button
-                        isDefault={ true }
-                        onClick={ () => {
-                            addRow();
-                        } }
-                    >
-                        { __( '+ Add Row' ) }
-                    </Button>
+                    <div className="lzb-gutenberg-repeater-options">
+                        <Button
+                            isDefault={ true }
+                            onClick={ () => {
+                                addRow();
+                            } }
+                        >
+                            { __( '+ Add Row' ) }
+                        </Button>
+                        { items.length && items.length > 1 ? (
+                            <Tooltip text={ __( 'Toggle all rows' ) }>
+                                <div>
+                                    { /* For some reason Tooltip is not working without this <div> */ }
+                                    <ToggleControl
+                                        checked={ this.state.activeItem === -2 ? true : false }
+                                        onChange={ () => {
+                                            this.setState( { activeItem: this.state.activeItem === -2 ? -1 : -2 } );
+                                        } }
+                                    />
+                                </div>
+                            </Tooltip>
+                        ) : '' }
+                    </div>
                 </div>
             </BaseControl>
         );

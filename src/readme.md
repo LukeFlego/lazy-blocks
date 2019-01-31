@@ -69,6 +69,37 @@ The manual installation method involves downloading our LazyBlocks plugin and up
 
 ## Changelog ##
 
+= 1.4.1 =
+
+* added action to add Handlebars custom helpers (info in documentation)
+* added filter to disable frontend block wrapper of the block (info in documentation)
+* improved columns in admin list of lazy blocks
+* extended list of symbols that need to be removed from the block slug
+* fixed PHP output for frontend if HTML output is empty
+* fixed losing Frontend & Editor output data when added output PHP filters
+
+= 1.4.0 =
+
+* added support for blocks PHP preview rendering in Editor
+* added toggle button in Repeater control to toggle all rows
+* added block slug validation and automatic creation in constructor
+* added descriptions to additional block fields in constructor
+* added new attribute `blockUniqueClass` that will adds automatically on each Lazy block
+* added title on Image and Gallery attributes object
+* changed Editor rendering to AJAX also for Handlebars templates
+* changed output for lazy blocks - always added wrapper with block class
+
+= 1.3.2 =
+
+* added unique `blockUniqueClass` attribute to each lazy block attributes and in editor wrapper
+
+= 1.3.1 =
+
+* added unique `blockId` attribute to each lazy block
+* simplified enqueue in admin templates page
+* fixed do_shortcode wrong attributes output (reserved `data` and `hash` attributes)
+* fixed Range control saving value
+
 = 1.3.0 =
 
 * added filter for output frontend PHP of blocks ([read in documentation](https://lazyblocks.com/documentation/blocks-code/php/))

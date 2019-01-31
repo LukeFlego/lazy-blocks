@@ -6,6 +6,15 @@
 .lzb-metabox {
     padding-bottom: 19px;
 
+    .description {
+        margin-bottom: 10px;
+    }
+
+    .disabled {
+        pointer-events: none;
+        opacity: .5;
+    }
+
     > label {
         display: block;
         margin-top: 0;
@@ -199,7 +208,19 @@
         position: absolute;
         top: 0;
         left: 0;
+        padding: 15px;
         visibility: hidden;
+
+        .CodeMirror {
+            margin: -15px;
+            margin-bottom: 0;
+        }
+
+        hr {
+            margin-right: -15px;
+            margin-bottom: 15px;
+            margin-left: -15px;
+        }
     }
     .lzb-metabox-tabs-content-item-active {
         position: static;
@@ -214,11 +235,6 @@
     }
     .lzb-metabox-tabs-content-item > .lzb-metabox {
         padding-bottom: 0;
-
-        + p {
-            padding-right: 10px;
-            padding-left: 10px;
-        }
     }
 }
 
@@ -535,6 +551,14 @@
         font-size: 1em;
         opacity: .6;
     }
+
+    .lzb-preview-server {
+        .components-spinner {
+            position: absolute;
+            top: 16px;
+            right: 10px;
+        }
+    }
 }
 
 // Color Picker control
@@ -821,9 +845,14 @@
     margin-bottom: 15px;
     border-bottom: 1px solid #eaeaea;
 }
-.lzb-gutenberg-repeater > button {
-    display: block;
-    margin-left: auto;
+.lzb-gutenberg-repeater-options {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .components-toggle-control .components-form-toggle {
+        margin-right: 0;
+    }
 }
 .lzb-inspector-controls {
     .lzb-gutenberg-repeater {
@@ -1077,9 +1106,35 @@
 
 
 /**
- * Hide unused metaboxes from admin pages.
+ * Admin pages.
  */
-.post-type-lazyblocks #slugdiv,
-.post-type-lazyblocks #postcustom {
-    display: none;
+.post-type-lazyblocks {
+    // Hide unused metaboxes.
+    #slugdiv,
+    #postcustom {
+        display: none;
+    }
+
+    .column-lazyblocks_post_icon {
+        width: 30px;
+        text-align: center;
+    }
+
+    .lzb-admin-block-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 30px;
+        height: 30px;
+        font-size: 16px;
+        background: #fff;
+        border: 1px solid #e8e8e8;
+        border-radius: 4px;
+
+        .dashicons {
+            width: auto;
+            height: 1em;
+            font-size: 1em;
+        }
+    }
 }
